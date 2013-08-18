@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+<h1>Here are your time clock entries</h1>
+<table id=clockEntries>
+	<tbody>
+        <tr id="tableHeader">
+            <th>id</th>
+            <th>project</th>
+            <th>date</th>
+            <th>timein</th>
+            <th>timeout</th>
+            <th>desc</th>
+            <th>hours</th>
+        </tr>
+        {{for entry in clockEntries:}}
+        <tr id="entry">
+            <td>{{=entry.id}}</td>
+            <td>{{=entry.project}}</td>
+            <td>{{=entry.work_date}}</td>
+            <td>{{=entry.time_in}}</td>
+            <td>{{=entry.time_out}}</td>
+            <td>{{=entry.description}}</td>
+            <td>{{=entry.hours}}</td>
+        </tr>
+        {{pass}}
+        <tr><td>total hours</td></tr>
+    </tbody>
+</table>
+<br>
+<h1>Please enter your time worked</h1>
+{{=form}}
+
+{{=response.toolbar()}}

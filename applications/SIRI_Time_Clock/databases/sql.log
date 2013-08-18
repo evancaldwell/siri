@@ -1,0 +1,127 @@
+timestamp: 2013-07-25T16:08:10.571000
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2013-07-25T16:08:10.762000
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-07-25T16:08:10.912000
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-07-25T16:08:11.075000
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2013-07-25T16:08:11.230000
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-07-25T16:08:11.392000
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2013-07-27T01:22:43.053000
+CREATE TABLE timeclock(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    project CHAR(512),
+    entry_date DATE,
+    time_in TIME,
+    time_out TIME,
+    usr CHAR(512)
+);
+success!
+timestamp: 2013-07-27T01:28:45.063000
+ALTER TABLE timeclock ADD work_date DATE;
+timestamp: 2013-07-27T12:07:11.036000
+ALTER TABLE timeclock ADD usr_id INTEGER REFERENCES Auth (id) ON DELETE CASCADE;
+timestamp: 2013-07-28T21:58:57.258000
+ALTER TABLE timeclock ADD hours DOUBLE;
+timestamp: 2013-07-30T17:03:08.698000
+ALTER TABLE timeclock ADD description TEXT;
+timestamp: 2013-08-01T08:36:41.527000
+CREATE TABLE fs_students(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    usr_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    opp_location CHAR(512),
+    internship CHAR(1),
+    confirmed CHAR(1),
+    paid CHAR(1),
+    airfare_purchased CHAR(1),
+    housing_conf CHAR(1),
+    training_hotel CHAR(1),
+    training_hotel_resrv CHAR(1),
+    training_start DATE,
+    training_end DATE,
+    depart_date DATE,
+    return_date DATE,
+    work_start DATE,
+    work_end DATE,
+    birthday DATE,
+    emergency_name CHAR(512),
+    emergency_phone CHAR(512)
+);
+success!
+timestamp: 2013-08-01T08:37:12.378000
+CREATE TABLE fs_prospects(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    usr_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    candidate CHAR(1),
+    interested_location CHAR(512),
+    interested_dates CHAR(512),
+    language_level INTEGER,
+    refered_by CHAR(512),
+    resume CHAR(512)
+);
+success!
+timestamp: 2013-08-01T17:34:56.954000
+ALTER TABLE fs_students ADD archive CHAR(1);
+timestamp: 2013-08-02T16:29:51.619000
+ALTER TABLE fs_prospects ADD referred_by CHAR(512);
+timestamp: 2013-08-02T16:29:51.846000
+ALTER TABLE fs_prospects ADD speak_language CHAR(512);
+timestamp: 2013-08-14T04:40:48.537214
+CREATE TABLE siri_projects(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    project_name CHAR(512),
+    project_desc CHAR(512),
+    project_supervisor CHAR(512),
+    project_contact CHAR(512)
+);
+success!
+timestamp: 2013-08-17T04:53:50.772892
+ALTER TABLE siri_projects ADD project_active CHAR(1);
+timestamp: 2013-08-17T04:53:50.822790
+ALTER TABLE siri_projects ADD project_coordinator CHAR(512);

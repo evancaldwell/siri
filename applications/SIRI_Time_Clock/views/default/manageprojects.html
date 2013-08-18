@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+<h1>Project Admin</h1>
+{{=form}}
+<table>
+	<thead>
+		<tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Coordinator</th>
+            <th>Contact</th>
+            <th>Edit</th>
+            <th>Deactivate?</th>
+        </tr>
+    </thead>
+    <tbody>
+		{{for project in projects:}}
+    	<tr>
+            <td>{{=project.id}}</td>
+            <td>{{=project.project_name}}</td>
+            <td>{{=project.project_desc}}</td>
+            <td>{{=project.project_coordinator}}</td>
+            <td>{{=project.project_contact}}</td>
+            <td>{{=A('edit', _href=URL('default', 'editproject', args=project.id))}}</td>
+            <td>{{=project.project_active}}</td>
+        </tr>
+		{{pass}}
+    </tbody>
+</table>

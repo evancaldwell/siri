@@ -1,0 +1,39 @@
+{{extend 'layout.html'}}
+<h1>This is the default/clockadmin.html template</h1>
+{{=adminMenu}}
+<br>
+{{=users}}
+{{=A('Manage Users', _href=URL('default', 'manageusers'))}}
+<div id="t"><div>
+<br>
+{{=groups}}
+{{=A('Manage Groups', _href=URL('default', 'managegroups'))}}
+<br>
+<!--{{=projects}}-->
+<table>
+	<thead>
+		<tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Coordinator</th>
+            <th>Contact</th>
+            <th>Edit</th>
+            <th>Deactivate?</th>
+        </tr>
+    </thead>
+    <tbody>
+		{{for project in projects:}}
+    	<tr>
+            <td>{{=project.id}}</td>
+            <td>{{=project.project_name}}</td>
+            <td>{{=project.project_desc}}</td>
+            <td>{{=project.project_coordinator}}</td>
+            <td>{{=project.project_contact}}</td>
+            <td>{{=A('edit', _href=URL('default', 'editproject', args=project.id))}}</td>
+            <td>{{=project.project_active}}</td>
+        </tr>
+		{{pass}}
+    </tbody>
+</table>
+{{=A('Manage Projects', _href=URL('default', 'manageprojects'))}}

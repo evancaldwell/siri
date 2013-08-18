@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+<h1>{{=T("Please enter the time you have worked")}}</h1>
+<br>
+{{=form}}
+{{=response.toolbar()}}

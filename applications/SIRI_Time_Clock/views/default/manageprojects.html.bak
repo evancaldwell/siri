@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+<h1>This is the default/manageprojects.html template</h1>
+{{=form}}
+{{=projectsList}}
